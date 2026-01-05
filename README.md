@@ -65,3 +65,61 @@ Each conversation is isolated using a `thread_id`, ensuring:
 
 **Pipeline:**
 
+
+- Each chat thread has its **own vector index**  
+- Retrieval exposed as an explicit `rag_tool`  
+- Keeps reasoning **transparent and auditable**
+
+---
+
+## 🧠 LLM & Embeddings
+
+- **LLM:** OpenAI-compatible `GPT-OSS-120B` via NVIDIA API  
+- **Embeddings:** `nvidia/nv-embed-v1`  
+- **Tool Binding:** LangChain + LangGraph  
+
+The model can:
+- Decide when to call tools  
+- Stream partial responses  
+- Resume conversations from persisted state  
+
+---
+
+## 🖥️ Frontend (Streamlit)
+
+**Features:**
+- Live streamed responses  
+- Tool execution status indicators  
+- Multi-thread chat sidebar with previews  
+- PDF upload per conversation  
+- Conversation deletion & lifecycle management  
+
+Async execution is handled using a **persistent event loop** to safely bridge:
+
+
+---
+
+
+---
+
+## ⚙️ Setup Instructions
+
+### 1️⃣ Clone the Repository
+```bash
+git clone https://github.com/rishikeshnanaware/chatbot_langgraph.git
+cd chatbot_langgraph
+pip install -r requirements.txt
+# NVIDIA API
+NVIDIA_API_KEY=your_nvidia_api_key
+
+# GitHub MCP
+GITHUB_PERSONAL_ACCESS_TOKEN=your_github_token
+
+# Email MCP
+EMAIL_ADDRESS=your_email@gmail.com
+EMAIL_APP_PASSWORD=your_app_password
+SMTP_SERVER=smtp.gmail.com
+IMAP_SERVER=imap.gmail.com
+
+
+streamlit run frontend.py
